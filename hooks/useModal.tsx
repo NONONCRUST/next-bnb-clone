@@ -50,11 +50,7 @@ const useModal = () => {
     if (ref.current && mounted && modalOpened) {
       return createPortal(
         <Container>
-          <div
-            className="modal-background"
-            role="presentation"
-            onClick={closeModal}
-          />
+          <div className="modal-background" role="presentation" />
           {children}
         </Container>,
         ref.current
