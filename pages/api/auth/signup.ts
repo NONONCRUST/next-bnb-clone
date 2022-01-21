@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Data from "../../../lib/data";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Data from "../../../lib/data";
 import { StoredUserType } from "../../../types/user";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -21,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const hashedPassword = bcrypt.hashSync(password, 8);
 
     const users = Data.user.getList();
-    let userId: any;
+    let userId: number;
     if (users.length === 0) {
       userId = 1;
     } else {
@@ -29,26 +29,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     const newUser: StoredUserType = {
       id: userId,
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
+      email,
+      firstName,
+      lastName,
       password: hashedPassword,
-      birthday: birthday,
+      birthday,
       profileImage: "/static/image/user/default_user_profile_image.jpg",
     };
 
     Data.user.write([...users, newUser]);
 
-    // await new Promise((resolve) => {
-    //   const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
-    //   res.setHeader(
-    //     "Set-Cookie",
-    //     `access_token=${token}; path=/; expires=${new Date(
-    //       Date.now() + 60 * 60 * 24 * 1000 * 3 //3일
-    //     )}; httponly`
-    //   );
-    //   resolve(token);
-    // });
+    await new Promise((resolve) => {
+      const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
+
+      res.setHeader("Set-Cookie", `access_token=${token}; path=/; httponly`);
+      resolve(token);
+    });
 
     const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> =
       newUser;

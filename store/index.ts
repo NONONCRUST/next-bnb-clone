@@ -6,10 +6,12 @@ import {
 } from "react-redux";
 import userSlice from "./userSlice";
 import commonSlice from "./commonSlice";
+import authSlice from "./authSlice";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
   common: commonSlice.reducer,
+  auth: authSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

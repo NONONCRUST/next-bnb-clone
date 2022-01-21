@@ -15,10 +15,11 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../store/userSlice";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
+import { authActions } from "../../store/authSlice";
 
 const Container = styled.form`
   width: 568px;
-  height: 614px;
+  min-height: 614px;
   padding: 32px;
   background-color: white;
   z-index: 11;
@@ -78,7 +79,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [firstName, setFirstName] = useState("");
   const [password, setPassword] = useState("");
 
-  const [hidePassword, setHidePassword] = useState(true);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
@@ -117,6 +118,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     [password]
   );
 
+  const changeToLoginModal = () => {
+    dispatch(authActions.setAuthMode("login"));
+  };
+
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -131,7 +136,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   };
 
   const toggleHidePassword = () => {
-    setHidePassword(!hidePassword);
+    setIsPasswordHidden(!isPasswordHidden);
   };
 
   const onChangeBirthMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -238,9 +243,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
       <div className="input-wrapper sign-up-password-input-wrapper">
         <Input
           placeholder="비밀번호 설정하기"
-          type={hidePassword ? "password" : "text"}
+          type={isPasswordHidden ? "password" : "text"}
           icon={
-            hidePassword ? (
+            isPasswordHidden ? (
               <OpenedEyeIcon onClick={toggleHidePassword} />
             ) : (
               <ClosedEyeIcon onClick={toggleHidePassword} />
@@ -317,7 +322,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           <span
             className="sign-up-modal-set-login"
             role="presentation"
-            onClick={() => {}}
+            onClick={changeToLoginModal}
           >
             로그인
           </span>

@@ -79,6 +79,9 @@ const Input: React.FC<IProps> = ({
     >
       <input {...props} />
       <div className="input-icon-wrapper">{icon}</div>
+      {useValidation && validateMode && !isValid && errorMessage && (
+        <p className="input-error-message">{errorMessage}</p>
+      )}
     </Container>
   );
 };
