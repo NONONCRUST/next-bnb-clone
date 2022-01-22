@@ -8,7 +8,7 @@ const initialState: UserState = {
   lastName: "",
   firstName: "",
   birthday: "",
-  isLogged: false,
+  isLogged: true,
   profileImage: "",
 };
 
@@ -18,6 +18,10 @@ const userSlice = createSlice({
   reducers: {
     setUserLogged(state, action: PayloadAction<UserType>) {
       state = { ...action.payload, isLogged: true };
+    },
+    initUser(state) {
+      state = initialState;
+      return state;
     },
   },
 });

@@ -17,22 +17,22 @@ const app = ({ Component, pageProps }: AppProps) => {
     </>
   );
 };
-// context: getInitialProps이 기본적으로 받는 props
-app.getInitialProps = async (context: AppContext) => {
-  const appInitialProps = await App.getInitialProps(context);
-  const cookieObject = cookieStringToObject(context.ctx.req?.headers.cookie);
-  const { store } = context.ctx;
-  const { isLogged } = store.getState().user;
-  try {
-    if (!isLogged && cookieObject.access_token) {
-      // axios.defaults.headers.cookie = cookieObject.access_token;
-      const { data } = await meAPI();
-      store.dispatch(userActions.setUserLogged(data));
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
-  return { ...appInitialProps };
-};
+
+// app.getInitialProps = async (context: AppContext) => {
+//   const appInitialProps = await App.getInitialProps(context);
+//   const cookieObject = cookieStringToObject(context.ctx.req?.headers.cookie);
+//   const { store } = context.ctx;
+//   const { isLogged } = store.getState().user;
+//   try {
+//     if (!isLogged && cookieObject.access_token) {
+//       axios.defaults.headers.cookie = cookieObject.access_token;
+//       const { data } = await meAPI();
+//       store.dispatch(userActions.setUserLogged(data));
+//     }
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+//   return { ...appInitialProps };
+// };
 
 export default wrapper.withRedux(app);
