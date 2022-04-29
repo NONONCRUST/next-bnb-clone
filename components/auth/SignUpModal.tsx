@@ -67,7 +67,7 @@ const Container = styled.form`
   }
 `;
 
-interface IProps {
+interface Props {
   closeModal: () => void;
 }
 
@@ -76,7 +76,7 @@ const disabledMonths = ["월"];
 const disabledDays = ["일"];
 const disabledYears = ["년"];
 
-const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
+const SignUpModal: React.FC<Props> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");

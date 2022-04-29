@@ -32,12 +32,12 @@ const Container = styled.button`
   ${({ color }) => getButtonColor(color || "")}
 `;
 
-interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   color?: "dark_cyan";
 }
 
-const Button: React.FC<IProps> = ({ children, color, ...props }) => {
+const Button: React.FC<Props> = ({ children, color, ...props }) => {
   return (
     <Container {...props} color={color}>
       {children}

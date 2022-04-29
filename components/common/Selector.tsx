@@ -104,7 +104,7 @@ const Container = styled.div<SelectorContainerProps>`
   }
 `;
 
-interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options?: string[];
   value?: string;
@@ -115,7 +115,7 @@ interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   disabledOptions?: string[];
 }
 
-const Selector: React.FC<IProps> = ({
+const Selector: React.FC<Props> = ({
   label,
   options = [],
   isValid,

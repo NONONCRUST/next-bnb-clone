@@ -1,10 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { BedType } from "../types/room";
 
 type RegisterRoomState = {
   largeBuildingType: string | null;
   buildingType: string | null;
   roomType: string | null;
   isSetUpForGuest: boolean | null;
+  maximumGuestCount: number;
+  bedroomCount: number;
+  bedCount: number;
+  bedList: { id: number; beds: { type: BedType; count: number }[] }[];
+  publicBedList: { type: BedType; count: number }[];
 };
 
 const initialState: RegisterRoomState = {
@@ -16,13 +22,22 @@ const initialState: RegisterRoomState = {
   roomType: null,
   //* 게스트만을 위해 만들어진 숙소인지 여부
   isSetUpForGuest: null,
+  //* 최대 숙박 인원
+  maximumGuestCount: 1,
+  //* 침실 개수
+  bedroomCount: 0,
+  //* 침대 개수
+  bedCount: 1,
+  //* 침대 유형
+  bedList: [],
+  //* 공용공간 침대 유형
+  publicBedList: [],
 };
 
 const registerRoomSlice = createSlice({
   name: "registerRoom",
   initialState,
   reducers: {
-    //* 큰 건물 유형 변경하기
     setLargeBuildingType(state, action: PayloadAction<string>) {
       if (action.payload === "") {
         state.largeBuildingType = null;
@@ -43,6 +58,18 @@ const registerRoomSlice = createSlice({
     },
     setIsSetUpForGuest(state, action: PayloadAction<boolean>) {
       state.isSetUpForGuest = action.payload;
+      return state;
+    },
+    setMaximumGuestCount(state, action: PayloadAction<number>) {
+      state.maximumGuestCount = action.payload;
+      return state;
+    },
+    setBedroomCount(state, action: PayloadAction<number>) {
+      state.bedroomCount = action.payload;
+      return state;
+    },
+    setBedCount(state, action: PayloadAction<number>) {
+      state.bedCount = action.payload;
       return state;
     },
   },

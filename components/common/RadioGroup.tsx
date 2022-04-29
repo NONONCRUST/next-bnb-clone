@@ -102,7 +102,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   }
 `;
 
-interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   value?: any;
   onChange?: (value: any) => void;
@@ -111,7 +111,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
 }
 
-const RadioGroup: React.FC<IProps> = ({
+const RadioGroup: React.FC<Props> = ({
   label,
   value,
   options = [],

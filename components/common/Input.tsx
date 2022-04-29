@@ -55,14 +55,14 @@ const Container = styled.div<InputContainerProps>`
     `}
 `;
 
-interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
   isValid?: boolean;
   useValidation?: boolean;
   errorMessage?: string;
 }
 
-const Input: React.FC<IProps> = ({
+const Input: React.FC<Props> = ({
   icon,
   isValid = false,
   useValidation = true,

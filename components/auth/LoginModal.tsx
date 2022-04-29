@@ -44,11 +44,11 @@ const Container = styled.form`
   }
 `;
 
-interface IProps {
+interface Props {
   closeModal: () => void;
 }
 
-const LoginModal: React.FC<IProps> = ({ closeModal }) => {
+const LoginModal: React.FC<Props> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

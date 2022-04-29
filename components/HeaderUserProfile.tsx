@@ -7,7 +7,6 @@ import HamburgerIcon from "../public/static/svg/header/hamburger.svg";
 import Link from "next/link";
 import styled from "styled-components";
 import palette from "../styles/palette";
-import { useSelector } from "../store";
 
 const Container = styled.div`
   .header-user-profile {
@@ -62,8 +61,6 @@ const Container = styled.div`
 
 const HeaderUserProfile = () => {
   const [isUserMenuOpened, setIsUserMenuOpened] = useState(false);
-
-  // const userProfileImage = useSelector((state) => state.user.profileImage)
 
   const dispatch = useDispatch();
 

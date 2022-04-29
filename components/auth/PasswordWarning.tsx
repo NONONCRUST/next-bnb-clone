@@ -14,12 +14,12 @@ const Container = styled.p<{ isValid: boolean }>`
   }
 `;
 
-interface IProps {
+interface Props {
   isValid: boolean;
   text: string;
 }
 
-const PasswordWarning: React.FC<IProps> = ({ isValid, text }) => {
+const PasswordWarning: React.FC<Props> = ({ isValid, text }) => {
   return (
     <Container isValid={isValid}>
       {isValid ? <RedXIcon /> : <GreenCheckIcon />}
