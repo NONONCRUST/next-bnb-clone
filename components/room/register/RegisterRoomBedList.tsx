@@ -1,0 +1,18 @@
+import React from "react";
+import { useSelector } from "../../../store";
+
+import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
+
+const RegisterRoomBedList: React.FC = () => {
+  const bedList = useSelector((state) => state.registerRoom.bedList);
+
+  return (
+    <ul className="register-room-bed-type-list-wrapper">
+      {bedList.map((bedroom) => (
+        <RegisterRoomBedTypes key={bedroom.id} bedroom={bedroom} />
+      ))}
+    </ul>
+  );
+};
+
+export default RegisterRoomBedList;
