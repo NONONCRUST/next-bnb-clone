@@ -22,6 +22,8 @@ type RegisterRoomState = {
   latitude: number;
   longitude: number;
   amenities: string[];
+  conveniences: string[];
+  photos: string[];
 };
 
 const initialState: RegisterRoomState = {
@@ -65,6 +67,10 @@ const initialState: RegisterRoomState = {
   longitude: 0,
   //* 편의 시설
   amenities: [],
+  //* 편의 공간
+  conveniences: [],
+  //* 숙소 사진
+  photos: [],
 };
 
 const registerRoomSlice = createSlice({
@@ -194,6 +200,12 @@ const registerRoomSlice = createSlice({
     },
     setAmenities(state, action: PayloadAction<string[]>) {
       state.amenities = action.payload;
+    },
+    setConveniences(state, action: PayloadAction<string[]>) {
+      state.conveniences = action.payload;
+    },
+    setPhotos(state, action: PayloadAction<string[]>) {
+      state.photos = action.payload;
     },
   },
 });
