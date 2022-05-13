@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
+import { registerRoomAPI } from "../../../lib/api/room";
 import BackArrowIcon from "../../../public/static/svg/register/register_room_footer_back_arrow.svg";
+import { useSelector } from "../../../store";
 import palette from "../../../styles/palette";
+import Button from "../../common/Button";
 
 const Container = styled.footer`
   position: fixed;
@@ -29,7 +33,24 @@ const Container = styled.footer`
 `;
 
 const RegisterRoomSubmitFooter: React.FC = () => {
-  const onClickRegisterRoom = async () => {};
+  const userId = useSelector((state) => state.user.id);
+  const registerRoom = useSelector((state) => state.registerRoom);
+
+  const router = useRouter();
+
+  const onClickRegisterRoom = async () => {
+    const registerRoomBody = {
+      ...registerRoom,
+      hostId: userId,
+    };
+
+    try {
+      await registerRoomAPI(registerRoomBody);
+      router.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container>
@@ -39,6 +60,9 @@ const RegisterRoomSubmitFooter: React.FC = () => {
           뒤로
         </a>
       </Link>
+      <Button onClick={onClickRegisterRoom} color="bittersweet" width="102px">
+        등록하기
+      </Button>
     </Container>
   );
 };

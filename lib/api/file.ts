@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from ".";
 
 //* 파일 업로드 api
 export const uploadFileAPI = (file: FormData) =>
