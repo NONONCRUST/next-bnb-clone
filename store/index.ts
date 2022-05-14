@@ -8,12 +8,14 @@ import userSlice from "./userSlice";
 import commonSlice from "./commonSlice";
 import authSlice from "./authSlice";
 import registerRoomSlice from "./registerRoomSlice";
+import searchRoomSlice from "./searchRoomSlice";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
   common: commonSlice.reducer,
   auth: authSlice.reducer,
   registerRoom: registerRoomSlice.reducer,
+  searchRoom: searchRoomSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

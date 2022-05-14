@@ -1,0 +1,18 @@
+import { useEffect, useState } from "react";
+
+//* debounce 된 값을 return
+const useDebounce = (value: string, delay: number) => {
+  const [debounceValue, setDebounceValue] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebounceValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debounceValue;
+};
+
+export default useDebounce;
